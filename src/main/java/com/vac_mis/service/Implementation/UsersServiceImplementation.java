@@ -16,16 +16,19 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UsersServiceImplementation implements IUsersService {
     @Autowired
-    IUsersDao iUsersDao;
+  private   IUsersDao dao
+            ;
 
 
     @Override
     public Users saveUser(Users user) {
-        return iUsersDao.save(user);
+        return dao
+                .save(user);
     }
 
     @Override
     public void deleteUser(Users user) {
-        iUsersDao.delete(user);
+        dao
+                .delete(user);
     }
 }

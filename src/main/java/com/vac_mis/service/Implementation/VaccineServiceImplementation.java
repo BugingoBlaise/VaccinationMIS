@@ -15,9 +15,9 @@ import java.util.List;
 @Transactional
 @AllArgsConstructor
 @Slf4j
-public class IVaccineServiceImplementation implements IVaccineService {
+public class VaccineServiceImplementation implements IVaccineService {
     @Autowired
-    IVaccineDao dao;
+  private   IVaccineDao dao;
 
     @Override
     public Vaccine saveVaccine(Vaccine vaccine) {
