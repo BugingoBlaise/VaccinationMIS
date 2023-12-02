@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 @Repository
 public interface IVaccineDao extends JpaRepository<Vaccine, UUID> {
+    Vaccine findVaccineByName(String name);
+
 }
