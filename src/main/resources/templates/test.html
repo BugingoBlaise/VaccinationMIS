@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+</head>
+<body>
+<form id="registrationForm" action="/saveUser" method="post" th:object="${usersForm}">
+    <label>Enter your names:
+        <input type="text" name="name" th:field="*{name}">
+    </label>
+    <label>Enter your username:
+        <input type="text" name="username" th:field="*{username}">
+    </label>
+    <label>Enter your password:
+        <input type="password" name="password" th:field="*{password}">
+    </label>
+    <label>Select role:
+        <select name="eRole" th:field="*{role}">
+            <option value="NURSE">Nurse</option>
+            <option value="ADMIN">Admin</option>
+        </select>
+    </label>
+    <button type="button" onclick="registerUser('NURSE')">Register as Nurse</button>
+    <button type="button" onclick="registerUser('ADMIN')">Register as Admin</button>
+</form>
+
+<script th:inline="javascript">
+    function registerUser(role) {
+        document.getElementById("registrationForm").action = "/saveUser/" + role;
+        document.getElementById("registrationForm").submit();
+    }
+</script>
+</body>
+</html>

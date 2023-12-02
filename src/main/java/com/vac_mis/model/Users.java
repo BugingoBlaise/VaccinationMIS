@@ -23,5 +23,5 @@ public class Users {
     private String username;
     private String password;
     @Enumerated(EnumType.STRING)
-    private ERole eRole;
+    private ERole role;
 }

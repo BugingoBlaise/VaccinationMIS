@@ -22,9 +22,6 @@ class VaccinationMisApplicationTests {
 	@Autowired
 	private IVaccineService vaccineService;
 
-	@Autowired
-	private IVaccineDao vaccineDao;
-
 	@Test
 	public void testSaveVaccine() {
 		// Test 1: Create a vaccine for testing
@@ -37,8 +34,10 @@ class VaccinationMisApplicationTests {
 		Vaccine savedVaccine1 = vaccineService.saveVaccine(vaccine1);
 
 		// Verify that the saved vaccine is not null and has the expected properties
+
 		assertNotNull(savedVaccine1);
-//		assertEquals("Malaria", savedVaccine1.getName());
+
+		//		assertEquals("Malaria", savedVaccine1.getName());
 //		assertEquals(1, savedVaccine1.getDoseNumber());
 //		assertEquals(LocalDate.of(2022, 1, 1), savedVaccine1.getLocalDate());
 
@@ -52,8 +51,10 @@ class VaccinationMisApplicationTests {
 		Vaccine savedVaccine2 = vaccineService.saveVaccine(vaccine2);
 
 		// Verify that the saved vaccine is not null and has the expected properties
+
 		assertNotNull(savedVaccine2);
-//		assertEquals("Cancer Vaccine", savedVaccine2.getName());
+
+		//		assertEquals("Cancer Vaccine", savedVaccine2.getName());
 //		assertEquals(2, savedVaccine2.getDoseNumber());
 //		assertEquals(LocalDate.of(2022, 2, 1), savedVaccine2.getLocalDate());
 
