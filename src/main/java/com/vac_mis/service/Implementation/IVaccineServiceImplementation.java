@@ -36,6 +36,6 @@ public class IVaccineServiceImplementation implements IVaccineService {
 
     @Override
     public Vaccine findVaccineByName(String name) {
-        return null;
+        return dao.findVaccineByName(name);
     }
 }
