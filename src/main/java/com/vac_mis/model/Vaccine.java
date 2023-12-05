@@ -22,5 +22,6 @@ public class Vaccine {
     private UUID Id;
     private String name;
     private Integer DoseNumber;
-    private LocalDate localDate;
+    private LocalDate entry_date;
+    private LocalDate expiry_date;
 }

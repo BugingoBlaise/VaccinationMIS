@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login / Signup</title>
+    <style>
+      body {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        flex-direction: column;
+      }
+
+      .navv {
+        background-color: #2c3e50;
+        overflow: hidden;
+        box-shadow: 0px 10px 10px 0px #aaa;
+      }
+
+      .navv a {
+        float: right;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px 18px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-size: medium;
+        font-weight: bold;
+      }
+
+      .navv a:hover {
+        background-color: #34495e;
+      }
+
+      .navv .home {
+        float: left;
+        margin-left: 30px;
+      }
+
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      form {
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        max-width: 100%;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        outline: 0;
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navv">
+      <nav>
+        <div class="home">
+          <a href="#home">Home</a>
+        </div>
+        <a href="#vaccines">LOGIN/SIGNUP</a>
+      </nav>
+    </div>
+    <div class="form-container">
+      <form id="login-form" action="/login" method="post">
+        <h2>Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Login</button>
+        <a href="#" class="signup">Signup</a>
+      </form>
+
+      <form
+        id="signup-form"
+        action="/signup"
+        method="post"
+        style="display: none"
+      >
+        <h2>Signup</h2>
+        <label for="signup-username">Names:</label>
+        <input type="text" id="signup-names" name="signup-names" required />
+        <label for="signup-email">Email:</label>
+        <input type="email" id="signup-email" name="signup-email" required />
+        <label for="signup-username">Username:</label>
+        <input
+          type="text"
+          id="signup-username"
+          name="signup-username"
+          required
+        />
+
+        <label for="signup-password">Password:</label>
+        <input
+          type="password"
+          id="signup-password"
+          name="signup-password"
+          required
+        />
+        <label for="signup-confPassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="signup-confPassword"
+          name="signup-confPassword"
+          required
+        />
+
+        <button type="submit">Signup</button>
+        <a href="signup.html" class="login">Login</a>
+      </form>
+    </div>
+
+    <script>
+      function validateLoginForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if (!username || !password) {
+          alert("Please fill in all fields for login.");
+          return false;
+        }
+
+        // Additional validation logic if needed
+
+        return true;
+      }
+
+      function validateSignupForm() {
+        var signupUsername = document.getElementById("signup-username").value;
+        var signupPassword = document.getElementById("signup-password").value;
+        var signupConfPassword = document.getElementById(
+          "signup-confPassword"
+        ).value;
+
+        if (!signupUsername || !signupPassword || !signupConfPassword) {
+          alert("Please fill in all fields for signup.");
+          return false;
+        }
+        if (signupPassword !== signupConfPassword) {
+          alert("Passwords do not match.");
+          return false;
+        }
+
+        // Additional validation logic if needed
+
+        return true;
+      }
+
+      // JavaScript to toggle between login and signup forms
+      document.querySelector(".signup").addEventListener("click", function () {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("signup-form").style.display = "block";
+      });
+
+      document.querySelector(".login").addEventListener("click", function () {
+        document.getElementById("signup-form").style.display = "none";
+        document.getElementById("login-form").style.display = "block";
+      });
+    </script>
+  </body>
+</html>

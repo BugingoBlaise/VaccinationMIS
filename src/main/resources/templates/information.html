@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INFORMATION ABOUT VACCINES</title>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <!-- <th:block th:include="navigation"></th:block> -->
+    <div class="header">
+      <h1>WELCOME TO PAGE INFORMATION</h1>
+      <p>Patient informations page</p>
+    </div>
+    <div class="container">
+      <form action="/saveVaccine" method="post">
+        <h2>VACCINATION INFORMATION</h2>
+        <label for="IdNumber">Patient ID Number:</label>
+        <input type="text" id="IdNumber" name="name" required />
+
+        <label for="patientName">Patient Name:</label>
+        <input type="text" id="patientName" name="patientName" required />
+
+        <label for="eGender">Gender:</label>
+        <select name="eGender" id="eGender">
+          <option value="MALE">MALE</option>
+          <option value="MALE">FEMALE</option>
+        </select>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required />
+        <select name="vaccine" id="vaccine">
+          <option value="MALE">MALARIA</option>
+          <option value="MALE">HEPATITIS</option>
+        </select>
+        <select name="nurse" id="nurse">
+          <option value="MALE">BLAISE</option>
+          <option value="MALE">MUGISHA</option>
+        </select>
+        <button type="submit">Save Vaccine</button>
+      </form>
+
+      <!-- Add your content here -->
+      <div class="tabular--wrapper">
+        <h3 class="main-title">VACINES DATA</h3>
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>NAMES</th>
+              <th>GENDER</th>
+              <th>DOB</th>
+              <th>VACCINE</th>
+              <th>NURSE</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td>Covid</td>
+                <td>3</td>
+                <td>2023-01-34</td>
+                <td><button>Edit</button><button>Delete</button></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="7" style="color: white">Total: 8 vaccines</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

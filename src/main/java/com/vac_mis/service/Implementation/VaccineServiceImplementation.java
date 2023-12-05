@@ -35,6 +35,21 @@ public class VaccineServiceImplementation implements IVaccineService {
     }
 
     @Override
+    public Vaccine updateVaccine(Vaccine vaccine) {
+        Vaccine updatedVaccine = this.dao.findById(vaccine.getId())
+                .orElseThrow(() -> new RuntimeException("Vaccine of Id:" + vaccine.getId() + "Not found"));
+
+        updatedVaccine.setId(vaccine.getId());
+        updatedVaccine.setName(vaccine.getName());
+        updatedVaccine.setDoseNumber(vaccine.getDoseNumber());
+        updatedVaccine.setEntry_date(vaccine.getEntry_date());
+        updatedVaccine.setExpiry_date(vaccine.getExpiry_date());
+
+
+        return dao.save(updatedVaccine);
+    }
+
+    @Override
     public Vaccine findVaccineByName(String name) {
         return dao.findVaccineByName(name);
     }

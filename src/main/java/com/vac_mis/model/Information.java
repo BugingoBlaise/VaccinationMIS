@@ -25,11 +25,9 @@ public class Information {
     @Enumerated(EnumType.STRING)
     private EGender eGender;
     private LocalDate dob;
-
     @ManyToOne
     @JoinColumn(name = "vac_Id")
     private Vaccine vaccine;
-
     @ManyToOne
     @JoinColumn(name = "nurse_Id")
     private Users nurse;

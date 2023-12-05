@@ -28,7 +28,8 @@ class VaccinationMisApplicationTests {
 		Vaccine vaccine1 = new Vaccine();
 		vaccine1.setName("Hepatitis");
 		vaccine1.setDoseNumber(1);
-		vaccine1.setLocalDate(LocalDate.of(2025, 1, 1));
+		vaccine1.setEntry_date(LocalDate.of(2025, 1, 1));
+		vaccine1.setExpiry_date(LocalDate.of(2030, 1, 1));
 
 		// Perform the save operation
 		Vaccine savedVaccine1 = vaccineService.saveVaccine(vaccine1);
@@ -45,7 +46,8 @@ class VaccinationMisApplicationTests {
 		Vaccine vaccine2 = new Vaccine();
 		vaccine2.setName("AIDS Vaccine");
 		vaccine2.setDoseNumber(2);
-		vaccine2.setLocalDate(LocalDate.of(2022, 2, 1));
+		vaccine1.setEntry_date(LocalDate.of(2022, 1, 1));
+		vaccine1.setExpiry_date(LocalDate.of(2040, 1, 1));
 
 		// Perform the save operation
 		Vaccine savedVaccine2 = vaccineService.saveVaccine(vaccine2);

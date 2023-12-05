@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vaccination Management System</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- <th:block th:include="sidebar"></th:block> -->
+    <nav>
+      <div class="home">
+        <a href="#home">Home</a>
+      </div>
+      <a href="#vaccines">Logout</a>
+      <a href="#patients">Patients</a>
+      <a href="#reports">Vaccines</a>
+    </nav>
+    <!-- END OF NAVVVVV------------------------- -->
+    <div class="header">
+      <h1>WELCOME TO VACCINE PAGE INFORMATION</h1>
+      <p>This is where all information is kept</p>
+    </div>
+    <div class="container">
+      <form th:action="@{/vaccine/create}" method="post" th:object="${vac}" id="form" >
+        <input type="text" id="vacId" style="display: none;" th:field="*{id}">
+        <h2>Vaccine Registration</h2>
+        <label for="vac_name">Vaccine Name:</label>
+        <input type="text" id="vac_name" th:field="*{name}"  required />
+
+        <label for="dose">Dose Number:</label>
+        <input type="number" id="dose" th:field="*{doseNumber}" required />
+
+        <label for="entry_date">Date:</label>
+        <input type="date" id="entry_date" th:field="*{entry_date}"  required />
+
+        <label for="expiry_date">Date:</label>
+        <input type="date" id="expiry_date" th:field="*{expiry_date}"  required />
+
+        <input type="submit" id="formBtn" value="Submit"/>
+      </form>
+
+      <!-- Add your content here -->
+      <div class="tabular--wrapper">
+        <h3 class="main-title">VACINES DATA</h3>
+        <div class="table-container">
+          <table>
+            <tr>
+              <th>NAMES</th>
+              <th>DOSE</th>
+              <th>ENTRY_DATE</th>
+              <th>EXPIRY_DATE</th>
+              <th>ACTION</th>
+            </tr>
+            <tbody>
+              <tr th:each="v : ${vaccineList}">
+                <td th:text="${v.id}" style="display: none"></td>
+                <td th:text="${v.name}"></td>
+                <td th:text="${v.doseNumber}"></td>
+                <td th:text="${v.entry_date}"></td>
+                <td th:text="${v.expiry_date}"></td>
+                <td>
+                  <div class="cell" data-title="Action">
+                    <a  class="update-btn">Edit</a>
+                    <a  class="delete-btn">Delete</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="7">Total: <span th:text="${vaccineList.size()}"></span> Vaccines</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script defer>
+  const form = document.getElementById("form");
+  const vacId = document.getElementById("vacId");
+  const vac_name = document.getElementById("vac_name");
+  const dose = document.getElementById("dose");
+  const entry_date = document.getElementById("entry_date");
+  const expiry_date = document.getElementById("expiry_date");
+  const updateBtn = document.querySelectorAll(".update-btn");
+  const deleteBtn = document.querySelectorAll(".delete-btn");
+  const formBtn = document.getElementById("formBtn");
+
+  updateBtn.forEach(button => {
+    button.addEventListener('click', () => {
+
+      const tr = button.closest("tr");
+      const fields = tr.getElementsByTagName("td");
+
+      vacId.value = fields[0].textContent;
+      vac_name.value = fields[1].textContent;
+      dose.value = fields[2].textContent;
+      entry_date.value = fields[3].textContent;
+      expiry_date.value=fields[4].textContent;
+
+      formBtn.value = "Update";
+      formBtn.style.backgroundColor = "skyBlue";
+
+    })
+  });
+
+  deleteBtn.forEach(button => {
+    button.addEventListener('click', () => {
+
+      const tr = button.closest("tr");
+      const fields = tr.getElementsByTagName("td");
+
+      vacId.value = fields[0].textContent;
+      vac_name.value = fields[1].textContent;
+      dose.value = fields[2].textContent;
+      entry_date.value = fields[3].textContent;
+      expiry_date.value=fields[4].textContent;
+
+      formBtn.value = "Delete";
+      formBtn.style.backgroundColor = "Red";
+
+    })
+  });
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    form.action="/vaccine/create?action="+formBtn.value;
+    form.submit();
+  })
+</script>
