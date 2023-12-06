@@ -8,7 +8,7 @@ public interface IVaccineService {
     Vaccine saveVaccine(Vaccine vaccine);
     List<Vaccine> vaccineList();
     void deleteVaccine(Vaccine vaccine);
-    Vaccine updateVaccine(Vaccine vaccine);
+    void updateVaccine(Vaccine vaccine);
     Vaccine findVaccineByName(String name);
 
 }

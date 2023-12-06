@@ -21,8 +21,8 @@ public class UsersServiceImplementation implements IUsersService {
 
 
     @Override
-    public Users saveUser(Users user) {
-        return dao
+    public void saveUser(Users user) {
+        dao
                 .save(user);
     }
 

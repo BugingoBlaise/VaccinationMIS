@@ -26,15 +26,7 @@ public class VaccineController {
         return "vaccine";
     }
 
-    @GetMapping
-    public List<Vaccine> getVaccines() {
-        return service.vaccineList();
-    }
 
-    @PostMapping
-    public void registerStudent(@RequestBody Vaccine vaccine) {
-        service.saveVaccine(vaccine);
-    }
     @PostMapping("/vaccine/create")
     public String createSemester(@ModelAttribute("vac") Vaccine vaccine, @Param("action") String action) {
 

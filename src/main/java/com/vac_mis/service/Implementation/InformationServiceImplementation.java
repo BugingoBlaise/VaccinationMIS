@@ -20,8 +20,8 @@ public class InformationServiceImplementation implements IInformationService {
     private IInformationDao dao;
 
     @Override
-    public Information saveInformation(Information information) {
-        return dao.save(information);
+    public void saveInformation(Information information) {
+        dao.save(information);
     }
 
     @Override
@@ -32,6 +32,22 @@ public class InformationServiceImplementation implements IInformationService {
     @Override
     public void deleteInformation(Information information) {
         dao.delete(information);
+    }
+
+    @Override
+    public void updateInformation(Information information) {
+        Information updatedInformation = this.dao.findById(information.getId())
+                .orElseThrow(() -> new RuntimeException("Information of Id:" + information.getId() + "Not found"));
+
+        updatedInformation.setId(information.getId());
+        updatedInformation.setIdNumber(information.getIdNumber());
+        updatedInformation.setPatientName(information.getPatientName());
+        updatedInformation.setEGender(information.getEGender());
+        updatedInformation.setDob(information.getDob());
+        updatedInformation.setVaccine(information.getVaccine());
+        updatedInformation.setNurse(information.getNurse());
+
+        dao.save(updatedInformation);
     }
 
     @Override
