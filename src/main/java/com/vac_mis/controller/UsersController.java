@@ -34,13 +34,15 @@ public class UsersController {
 
 
     @PostMapping("/login/createAccount")
-    public String signup(@ModelAttribute("log") Users user) {
+    public String signup(@ModelAttribute("log") Users user,Model model) {
         // Implement your user registration logic here (e.g., save user details in the database)
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         user.setRole(ERole.NURSE);
 
         userService.saveUser(user);
+        model.addAttribute("infoMessage", "Account created successfully");
+
         return "redirect:/login";
     }
 }

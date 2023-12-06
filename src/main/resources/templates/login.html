@@ -111,6 +111,7 @@
 
       <form  th:action="@{/login/createAccount}" method="post" th:object="${log}" id="signup-form"  style="display: none">
       <h2>Signup</h2>
+        <small style="background-color: #2980b9" th:text="${infoMessage}"></small>
         <label for="signup-username">Names:</label>
         <input type="text" id="signup-names" th:field="*{name}" required />
         <label for="signup-email">Email:</label>
@@ -120,7 +121,7 @@
         <label for="signup-password">Password:</label>
         <input type="password" id="signup-password" th:field="*{password}" required/>
 
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Submit" style="background-color: #2980b9"/>
         <a href="@{/login}" class="login">Login</a>
       </form>
     </div>
