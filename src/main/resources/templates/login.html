@@ -91,109 +91,82 @@
     <div class="navv">
       <nav>
         <div class="home">
-          <a href="#home">Home</a>
+          <a th:href="@{/login}">Home</a>
         </div>
-        <a href="#vaccines">LOGIN/SIGNUP</a>
+        <a th:href="@{/login}">LOGIN/SIGNUP</a>
       </nav>
     </div>
     <div class="form-container">
-      <form id="login-form" action="/login" method="post">
+      <form id="login-form" action=""  method="post">
         <h2>Login</h2>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
+        <input type="text" id="username" required />
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
+        <input type="password" id="password"  required />
 
         <button type="submit">Login</button>
         <a href="#" class="signup">Signup</a>
       </form>
 
-      <form
-        id="signup-form"
-        action="/signup"
-        method="post"
-        style="display: none"
-      >
-        <h2>Signup</h2>
+      <form  th:action="@{/login/createAccount}" method="post" th:object="${log}" id="signup-form"  style="display: none">
+      <h2>Signup</h2>
         <label for="signup-username">Names:</label>
-        <input type="text" id="signup-names" name="signup-names" required />
+        <input type="text" id="signup-names" th:field="*{name}" required />
         <label for="signup-email">Email:</label>
-        <input type="email" id="signup-email" name="signup-email" required />
+        <input type="email" id="signup-email" th:field="*{email}" required />
         <label for="signup-username">Username:</label>
-        <input
-          type="text"
-          id="signup-username"
-          name="signup-username"
-          required
-        />
-
+        <input type="text"  id="signup-username" th:field="*{username}" required />
         <label for="signup-password">Password:</label>
-        <input
-          type="password"
-          id="signup-password"
-          name="signup-password"
-          required
-        />
-        <label for="signup-confPassword">Confirm Password:</label>
-        <input
-          type="password"
-          id="signup-confPassword"
-          name="signup-confPassword"
-          required
-        />
+        <input type="password" id="signup-password" th:field="*{password}" required/>
 
-        <button type="submit">Signup</button>
-        <a href="login.html" class="login">Login</a>
+        <input type="submit" value="Submit"/>
+        <a href="@{/login}" class="login">Login</a>
       </form>
     </div>
 
-    <script>
-      function validateLoginForm() {
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
 
-        if (!username || !password) {
-          alert("Please fill in all fields for login.");
-          return false;
-        }
-
-        // Additional validation logic if needed
-
-        return true;
-      }
-
-      function validateSignupForm() {
-        var signupUsername = document.getElementById("signup-username").value;
-        var signupPassword = document.getElementById("signup-password").value;
-        var signupConfPassword = document.getElementById(
-          "signup-confPassword"
-        ).value;
-
-        if (!signupUsername || !signupPassword || !signupConfPassword) {
-          alert("Please fill in all fields for signup.");
-          return false;
-        }
-        if (signupPassword !== signupConfPassword) {
-          alert("Passwords do not match.");
-          return false;
-        }
-
-        // Additional validation logic if needed
-
-        return true;
-      }
-
-      // JavaScript to toggle between login and signup forms
-      document.querySelector(".signup").addEventListener("click", function () {
-        document.getElementById("login-form").style.display = "none";
-        document.getElementById("signup-form").style.display = "block";
-      });
-
-      document.querySelector(".login").addEventListener("click", function () {
-        document.getElementById("signup-form").style.display = "none";
-        document.getElementById("login-form").style.display = "block";
-      });
-    </script>
   </body>
 </html>
+<script defer>
+  function validateLoginForm() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    if (!username || !password) {
+      alert("Please fill in all fields for login.");
+      return false;
+    }
+
+    // Additional validation logic if needed
+
+    return true;
+  }
+
+  function validateSignupForm() {
+    var signupUsername = document.getElementById("signup-username").value;
+    var signupPassword = document.getElementById("signup-password").value;
+
+
+    if (!signupUsername || !signupPassword) {
+      alert("Please fill in all fields for signup.");
+      return false;
+    }
+
+
+    // Additional validation logic if needed
+
+    return true;
+  }
+
+  // JavaScript to toggle between login and signup forms
+  document.querySelector(".signup").addEventListener("click", function () {
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("signup-form").style.display = "block";
+  });
+
+  document.querySelector(".login").addEventListener("click", function () {
+    document.getElementById("signup-form").style.display = "none";
+    document.getElementById("login-form").style.display = "block";
+  });
+</script>

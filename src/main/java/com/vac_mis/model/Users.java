@@ -20,6 +20,7 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID Id;
     private String name;
+    private String email;
     private String username;
     private String password;
     @Enumerated(EnumType.STRING)

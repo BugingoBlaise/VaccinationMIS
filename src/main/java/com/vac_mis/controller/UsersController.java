@@ -3,6 +3,7 @@ package com.vac_mis.controller;
 import com.vac_mis.model.Users;
 import com.vac_mis.model.enums.ERole;
 import com.vac_mis.service.IUsersService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,30 +13,30 @@ import java.util.UUID;
 
 @Controller
 public class UsersController {
+
+    private final IUsersService userService;
+
     @Autowired
-    private IUsersService userService;
+    public UsersController(IUsersService userService) {
+        this.userService = userService;
+    }
+
 
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String homePage(Model model) {
+        model.addAttribute("log",new Users());
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model) {
-        // Implement your authentication logic here (e.g., check credentials in the database)
-        // If authentication is successful, redirect to a secure page; otherwise, show an error message.
-        return "redirect:/secure-page";
-    }
 
-    @GetMapping("/signup")
-    public String showSignupForm(Model model) {
-        model.addAttribute("user", new Users());
-        return "login";
-    }
 
-    @PostMapping("/signup")
-    public String signup(@ModelAttribute Users user) {
+
+    @PostMapping("/login/createAccount")
+    public String signup(@ModelAttribute("log") Users user) {
         // Implement your user registration logic here (e.g., save user details in the database)
+
+        user.setRole(ERole.NURSE);
+
         userService.saveUser(user);
         return "redirect:/login";
     }
