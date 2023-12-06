@@ -1,9 +1,9 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Login / Signup</title>
     <style>
       body {
         display: flex;
@@ -39,11 +39,13 @@
         margin-left: 30px;
       }
 
-      .loginn {
+      .form-container {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
       }
 
       form {
@@ -94,8 +96,8 @@
         <a href="#vaccines">LOGIN/SIGNUP</a>
       </nav>
     </div>
-    <div class="loginn">
-      <form action="/login" method="post">
+    <div class="form-container">
+      <form id="login-form" action="/login" method="post">
         <h2>Login</h2>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required />
@@ -104,8 +106,94 @@
         <input type="password" id="password" name="password" required />
 
         <button type="submit">Login</button>
-        <a href="signup.html" class="signup">Signup</a>
+        <a href="#" class="signup">Signup</a>
+      </form>
+
+      <form
+        id="signup-form"
+        action="/signup"
+        method="post"
+        style="display: none"
+      >
+        <h2>Signup</h2>
+        <label for="signup-username">Names:</label>
+        <input type="text" id="signup-names" name="signup-names" required />
+        <label for="signup-email">Email:</label>
+        <input type="email" id="signup-email" name="signup-email" required />
+        <label for="signup-username">Username:</label>
+        <input
+          type="text"
+          id="signup-username"
+          name="signup-username"
+          required
+        />
+
+        <label for="signup-password">Password:</label>
+        <input
+          type="password"
+          id="signup-password"
+          name="signup-password"
+          required
+        />
+        <label for="signup-confPassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="signup-confPassword"
+          name="signup-confPassword"
+          required
+        />
+
+        <button type="submit">Signup</button>
+        <a href="login.html" class="login">Login</a>
       </form>
     </div>
+
+    <script>
+      function validateLoginForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if (!username || !password) {
+          alert("Please fill in all fields for login.");
+          return false;
+        }
+
+        // Additional validation logic if needed
+
+        return true;
+      }
+
+      function validateSignupForm() {
+        var signupUsername = document.getElementById("signup-username").value;
+        var signupPassword = document.getElementById("signup-password").value;
+        var signupConfPassword = document.getElementById(
+          "signup-confPassword"
+        ).value;
+
+        if (!signupUsername || !signupPassword || !signupConfPassword) {
+          alert("Please fill in all fields for signup.");
+          return false;
+        }
+        if (signupPassword !== signupConfPassword) {
+          alert("Passwords do not match.");
+          return false;
+        }
+
+        // Additional validation logic if needed
+
+        return true;
+      }
+
+      // JavaScript to toggle between login and signup forms
+      document.querySelector(".signup").addEventListener("click", function () {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("signup-form").style.display = "block";
+      });
+
+      document.querySelector(".login").addEventListener("click", function () {
+        document.getElementById("signup-form").style.display = "none";
+        document.getElementById("login-form").style.display = "block";
+      });
+    </script>
   </body>
-</html> -->
+</html>

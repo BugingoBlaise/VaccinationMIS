@@ -29,7 +29,7 @@ public class InformationController {
 
 
     @PostMapping("/information/create")
-    public String createSemester(@ModelAttribute("vac") Information information, @Param("action") String action) {
+    public String createInfo(@ModelAttribute("vac") Information information, @Param("action") String action) {
 
 
         if (action.equals("Delete")) {

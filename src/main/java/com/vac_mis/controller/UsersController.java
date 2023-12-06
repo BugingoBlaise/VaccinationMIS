@@ -6,44 +6,37 @@ import com.vac_mis.service.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @Controller
 public class UsersController {
-
     @Autowired
     private IUsersService userService;
 
-    @PostMapping("/saveUser/{role}")
-    public String saveUser(@ModelAttribute Users user, @PathVariable String role) {
-        if ("NURSE".equals(role)) {
-            saveNurse(user);
-        } else if ("ADMIN".equals(role)) {
-            saveAdmin(user);
-        }
-        return "redirect:/usersPage";
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login";
     }
 
-    @GetMapping("/usersPage")
-    public String indexPage(Model model) {
-        model.addAttribute("usersForm", new Users());
-        return "test";
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password, Model model) {
+        // Implement your authentication logic here (e.g., check credentials in the database)
+        // If authentication is successful, redirect to a secure page; otherwise, show an error message.
+        return "redirect:/secure-page";
     }
 
-    private void saveNurse(Users user) {
-        user.setId(UUID.randomUUID());
-        user.setRole(ERole.NURSE);
+    @GetMapping("/signup")
+    public String showSignupForm(Model model) {
+        model.addAttribute("user", new Users());
+        return "login";
+    }
+
+    @PostMapping("/signup")
+    public String signup(@ModelAttribute Users user) {
+        // Implement your user registration logic here (e.g., save user details in the database)
         userService.saveUser(user);
-    }
-
-    private void saveAdmin(Users user) {
-        user.setId(UUID.randomUUID());
-        user.setRole(ERole.ADMIN);
-        userService.saveUser(user);
+        return "redirect:/login";
     }
 }
