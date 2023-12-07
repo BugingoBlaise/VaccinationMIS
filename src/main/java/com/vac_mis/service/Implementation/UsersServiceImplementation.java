@@ -8,9 +8,11 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -19,7 +21,8 @@ import java.util.List;
 public class UsersServiceImplementation implements IUsersService {
     @Autowired
     private IUsersDao dao;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void saveUser(Users user) {
@@ -36,4 +39,13 @@ public class UsersServiceImplementation implements IUsersService {
     public List<Users> usersList() {
         return dao.findAll();
     }
+    @Override
+    public boolean authenticateUser(String username, String password) {
+        Users user = dao.findByUsername(username);
+
+        // Check if the user exists and the provided password matches the encoded password
+        return user != null && passwordEncoder.matches(password, user.getPassword());
+    }
+    
+
 }

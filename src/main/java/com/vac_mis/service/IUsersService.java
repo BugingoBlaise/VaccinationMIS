@@ -7,6 +7,6 @@ import java.util.List;
 public interface IUsersService {
     void saveUser(Users user);
     void deleteUser(Users user);
-
+    boolean authenticateUser(String username, String password);
     List<Users>usersList();
 }
