@@ -2,6 +2,8 @@ package com.vac_mis.controller;
 
 import com.vac_mis.model.Information;
 import com.vac_mis.service.IInformationService;
+import com.vac_mis.service.IUsersService;
+import com.vac_mis.service.IVaccineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -12,34 +14,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class InformationController {
-    private IInformationService service;
+    private final IInformationService infoService;
+    private final IVaccineService vaccineService;
+    private final IUsersService usersService;
 
     @Autowired
-
-    public InformationController(IInformationService service) {
-        this.service = service;
+    public InformationController(IInformationService infoService, IVaccineService vaccineService, IUsersService usersService) {
+        this.infoService = infoService;
+        this.vaccineService = vaccineService;
+        this.usersService = usersService;
     }
 
     @GetMapping("/info")
     public String getInformationDashboard(Model model) {
-        model.addAttribute("informationList", service.informationList());
-        model.addAttribute("vac", new Information());
+        model.addAttribute("informationList", infoService.informationList());
+        model.addAttribute("inform", new Information());
+       model.addAttribute("vacList",vaccineService.vaccineList());
+       model.addAttribute("nurseList",usersService.usersList());
         return "information";
     }
 
 
     @PostMapping("/information/create")
-    public String createInfo(@ModelAttribute("vac") Information information, @Param("action") String action) {
+    public String createInfo(@ModelAttribute("inform") Information information, @Param("action") String action) {
 
 
         if (action.equals("Delete")) {
-            service.deleteInformation(information);
+            infoService.deleteInformation(information);
         } else if (action.equals("Update")) {
             information.setId(information.getId());
-            service.updateInformation(information);
+            infoService.updateInformation(information);
         } else {
-            service.saveInformation(information);
+            infoService.saveInformation(information);
         }
-        return "redirect:/information";
+        return "redirect:/info";
     }
 }

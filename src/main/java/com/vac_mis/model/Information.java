@@ -23,7 +23,7 @@ public class Information {
     private String IdNumber;
     private String patientName;
     @Enumerated(EnumType.STRING)
-    private EGender eGender;
+    private EGender gender;
     private LocalDate dob;
     @ManyToOne
     @JoinColumn(name = "vac_Id")

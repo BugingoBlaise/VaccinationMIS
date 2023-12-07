@@ -20,8 +20,8 @@ public class InformationServiceImplementation implements IInformationService {
     private IInformationDao dao;
 
     @Override
-    public void saveInformation(Information information) {
-        dao.save(information);
+    public Information saveInformation(Information information) {
+      return   dao.save(information);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class InformationServiceImplementation implements IInformationService {
         updatedInformation.setId(information.getId());
         updatedInformation.setIdNumber(information.getIdNumber());
         updatedInformation.setPatientName(information.getPatientName());
-        updatedInformation.setEGender(information.getEGender());
+        updatedInformation.setGender(information.getGender());
         updatedInformation.setDob(information.getDob());
         updatedInformation.setVaccine(information.getVaccine());
         updatedInformation.setNurse(information.getNurse());

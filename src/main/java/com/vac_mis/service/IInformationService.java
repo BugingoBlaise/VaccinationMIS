@@ -5,7 +5,7 @@ import com.vac_mis.model.Information;
 import java.util.List;
 
 public interface IInformationService {
-    void saveInformation(Information information);
+    Information saveInformation(Information information);
     List<Information> informationList();
     void deleteInformation(Information information);
 

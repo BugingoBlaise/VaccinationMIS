@@ -1,73 +1,154 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>INFORMATION ABOUT VACCINES</title>
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-  <th:block th:include="navigation"></th:block>
-    <div class="header">
-      <h1>WELCOME TO PAGE INFORMATION</h1>
-      <p>Patient informations page</p>
-    </div>
-    <div class="container">
-      <form action="/saveVaccine" method="post">
-        <h2>VACCINATION INFORMATION</h2>
-        <label for="IdNumber">Patient ID Number:</label>
-        <input type="text" id="IdNumber" name="name" required />
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<th:block th:include="navigation"></th:block>
+<div class="header">
+    <h1>WELCOME TO PAGE INFORMATION</h1>
+    <p>Patient informations page</p>
+</div>
+<div class="container">
+    <form th:action="@{/information/create}" method="post" th:object="${inform}" id="form">
+        <input type="text" id="infoId" style="display: none;" th:field="*{id}">
 
-        <label for="patientName">Patient Name:</label>
-        <input type="text" id="patientName" name="patientName" required />
+        <div>
+            <h2>VACCINATION INFORMATION</h2>
+            <label for="IdNumber">Patient ID Number:</label>
+            <input type="text" id="IdNumber" th:field="*{idNumber}" required/>
 
-        <label for="eGender">Gender:</label>
-        <select name="eGender" id="eGender">
-          <option value="MALE">MALE</option>
-          <option value="MALE">FEMALE</option>
-        </select>
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob" required />
-        <select name="vaccine" id="vaccine">
-          <option value="MALE">MALARIA</option>
-          <option value="MALE">HEPATITIS</option>
-        </select>
-        <select name="nurse" id="nurse">
-          <option value="MALE">BLAISE</option>
-          <option value="MALE">MUGISHA</option>
-        </select>
-        <button type="submit">Save Vaccine</button>
-      </form>
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" th:field="*{patientName}" required/>
 
-      <!-- Add your content here -->
-      <div class="tabular--wrapper">
-        <h3 class="main-title">VACINES DATA</h3>
-        <div class="table-container">
-          <table>
-            <tr>
-              <th>ID</th>
-              <th>NAMES</th>
-              <th>GENDER</th>
-              <th>DOB</th>
-              <th>VACCINE</th>
-              <th>NURSE</th>
-            </tr>
-            <tbody>
-              <tr>
-                <td>Covid</td>
-                <td>3</td>
-                <td>2023-01-34</td>
-                <td><button>Edit</button><button>Delete</button></td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="7" style="color: white">Total: 8 vaccines</td>
-              </tr>
-            </tfoot>
-          </table>
+            <label for="eGender">Gender:</label>
+            <select name="eGender" id="eGender" th:field="*{gender}">
+                <option value="">select gender</option>
+                <option th:value="${T(com.vac_mis.model.enums.EGender).MALE}">MALE</option>
+                <option th:value="${T(com.vac_mis.model.enums.EGender).FEMALE}">FEMALE</option>
+            </select>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" th:field="*{dob}" required/>
+            <label for="vaccine">Select Vaccine:</label>
+            <select name="vaccine" id="vaccine" th:field="*{vaccine.id}">
+                <option value="">select vaccine</option>
+                <option th:each="vaccine : ${vacList}" th:value="${vaccine.id}" th:text="${vaccine.name}">[[${vaccine.name}]]</option>
+            </select>
+
+            <label for="nurse">Select Nurse:</label>
+            <select name="nurse" id="nurse" th:field="*{nurse.id}">
+                <option value="">select nurse</option>
+                <option th:each="nurse : ${nurseList}" th:value="${nurse.id}" th:text="${nurse.name}">[[${nurse.name}]]</option>
+            </select>
         </div>
-      </div>
+      <input type="submit" id="formBtn" value="Submit"/>
+    </form>
+
+    <!-- Add your content here -->
+    <div class="tabular--wrapper">
+        <h3 class="main-title">PATIENTS DATA</h3>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th style="display: none;"></th>
+                    <th>ID</th>
+                    <th>NAMES</th>
+                    <th>GENDER</th>
+                    <th>DOB</th>
+                    <th>VACCINE</th>
+                    <th>NURSE</th>
+                    <th>ACTIONS</th>
+                </tr>
+                <tbody>
+                <tr th:each="in: ${informationList}">
+                    <td th:text="${in.id}" style="display: none;"></td>
+                    <td th:text="${in.idNumber}"></td>
+                    <td th:text="${in.patientName}"></td>
+                    <td th:text="${in.gender}"></td>
+                    <td th:text="${in.dob}"></td>
+                    <td th:text="${in.vaccine.getName()}"></td>
+                    <td th:text="${in.nurse.getName()}"></td>
+                    <td>
+                        <div class="cell" data-title="Action">
+                            <a class="update-btn">Edit</a>
+                            <a class="delete-btn">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="7" style="color: white">Total: <span th:text="${informationList.size()}"></span>
+                        Patients
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
+<script defer>
+    const form = document.getElementById("form");
+    const infoId=document.getElementById("infoId");
+    const IdNumber = document.getElementById("IdNumber");
+    const patientName = document.getElementById("patientName");
+    const eGender = document.getElementById("eGender");
+    const dob = document.getElementById("dob");
+    const vaccine = document.getElementById("vaccine");
+    const nurse = document.getElementById("nurse");
+
+    const updateBtn = document.querySelectorAll(".update-btn");
+    const deleteBtn = document.querySelectorAll(".delete-btn");
+    const formBtn = document.getElementById("formBtn");
+
+    updateBtn.forEach(button => {
+        button.addEventListener('click', () => {
+
+            const tr = button.closest("tr");
+            const fields = tr.getElementsByTagName("td");
+
+            infoId.value=fields[0].textContent;
+            IdNumber.value = fields[1].textContent;
+            patientName.value = fields[2].textContent;
+            eGender.value = fields[3].textContent;
+            dob.value = fields[4].textContent;
+            vaccine.value = fields[5].textContent;
+            nurse.value = fields[6].textContent;
+
+            formBtn.value = "Update";
+            formBtn.style.backgroundColor = "skyBlue";
+
+        })
+    });
+
+    deleteBtn.forEach(button => {
+        button.addEventListener('click', () => {
+
+            const tr = button.closest("tr");
+            const fields = tr.getElementsByTagName("td");
+
+            infoId.value=fields[0].textContent;
+            IdNumber.value = fields[1].textContent;
+            patientName.value = fields[2].textContent;
+            eGender.value = fields[3].textContent;
+            dob.value = fields[4].textContent;
+            vaccine.value = fields[5].textContent;
+            nurse.value = fields[6].textContent;
+
+            formBtn.value = "Delete";
+            formBtn.style.backgroundColor = "Red";
+
+        })
+    });
+    form.addEventListener("submit", e => {
+        e.preventDefault();
+        form.action = "/information/create?action=" + formBtn.value;
+        form.submit();
+    })
+</script>

@@ -10,14 +10,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 @AllArgsConstructor
 @Slf4j
 public class UsersServiceImplementation implements IUsersService {
     @Autowired
-  private   IUsersDao dao
-            ;
+    private IUsersDao dao;
 
 
     @Override
@@ -28,7 +29,11 @@ public class UsersServiceImplementation implements IUsersService {
 
     @Override
     public void deleteUser(Users user) {
-        dao
-                .delete(user);
+        dao.delete(user);
+    }
+
+    @Override
+    public List<Users> usersList() {
+        return dao.findAll();
     }
 }
