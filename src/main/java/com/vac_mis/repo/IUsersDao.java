@@ -9,8 +9,5 @@ import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface IUsersDao extends JpaRepository<Users, UUID> {
-    @Query("SELECT  u FROM Users  u WHERE u.username=?1 and u.password=?2")
-    Optional<Users> findByUsernameAndPassword(String username, String password);
-
-    Users findByUsername(String username);
+    Optional<Users> findAccountByEmail(String email);
 }

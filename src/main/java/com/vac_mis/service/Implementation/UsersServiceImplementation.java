@@ -8,11 +8,12 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -25,8 +26,7 @@ public class UsersServiceImplementation implements IUsersService {
 
     @Override
     public void saveUser(Users user) {
-        dao
-                .save(user);
+        dao.save(user);
     }
 
     @Override
@@ -38,7 +38,16 @@ public class UsersServiceImplementation implements IUsersService {
     public List<Users> usersList() {
         return dao.findAll();
     }
+/*
+    @Override
+    public Users getLoggedInUser() {
+        return (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return (UserDetails) dao.findAccountByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+*/
 
-    
 
 }
