@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vaccination System Home</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ecf0f1;
+      color: #2c3e50;
+    }
+
+    .navigation {
+      background-color: #34495e;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      /*position: fixed;*/
+    }
+
+    .home a {
+      font-size: 1.2rem;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a {
+      font-size: 1.1rem;
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #2980b9;
+    }
+
+    .header {
+      text-align: center;
+      padding: 90px 0;
+      /*background-color: #34495e;*/
+      /*color: ;*/
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 0;
+    }
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+    }
+
+    .box {
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .image-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .info-section,
+    .about-section {
+      max-width: 800px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .info-section h2,
+    .about-section h2 {
+      color: #3498db;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .action-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #2ecc71;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .action-btn:hover {
+      background-color: #27ae60;
+    }
+
+    .about-section p,
+    .info-section p {
+      color: #7f8c8d;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      background-color: #34495e;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="navigation">
+  <nav>
+    <div class="home">
+      <a href="#home">Home</a>
+    </div>
+    <a th:href="@{/logout}">Logout</a>
+    <a href="#patients">Patients</a>
+    <a th:href="@{/vaccine}">Vaccines</a>
+  </nav>
+</div>
+<div class="header">
+  <h1>Welcome to the Vaccination System</h1>
+  <p>Your trusted platform for managing vaccination records</p>
+</div>
+<div class="container">
+  <div class="info-section">
+    <h2>Important Information</h2>
+    <p>Stay up-to-date with the latest vaccination news and guidelines.</p>
+    <p>Protect yourself and others by getting vaccinated against preventable diseases.</p>
+  </div>
+
+  <div class="action-buttons">
+    <a href="#patients" class="action-btn">View Patients</a>
+    <a th:href="@{/vaccine}" class="action-btn">Explore Vaccines</a>
+  </div>
+  <div class="main-container">
+    <div class="box">
+      <h2>Welcome to our Vaccination System</h2>
+      <p>This is the landing page for our system. Explore and stay informed!</p>
+    </div>
+
+    <div class="box">
+      <h2>Important Information</h2>
+      <p>Learn about the latest updates and guidelines regarding vaccinations.</p>
+    </div>
+
+    <div class="image-container">
+      <img src="path/to/your/image.jpg" alt="Vaccination Image" />
+    </div>
+  </div>
+
+  <div class="about-section">
+    <h2>About Us</h2>
+    <p>We are committed to providing a seamless experience for managing vaccination records.</p>
+    <p>Our mission is to contribute to public health by ensuring easy access to vaccination information.</p>
+  </div>
+</div>
+<footer>
+  &copy; 2023 Vaccination System. All rights reserved.
+</footer>
+</body>
+</html>

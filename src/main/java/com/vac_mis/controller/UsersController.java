@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+
+//@RequestMapping("api/v1/admin")
+ @Controller
 public class UsersController {
     @Autowired
     IUsersService userService;
@@ -33,22 +35,21 @@ public class UsersController {
     }
 
 
-    @PostMapping("/login/createAccount")
+    @PostMapping("/register")
     public String signup(@ModelAttribute("log") Users user, Model model) {
-        // Implement your user registration logic here (e.g., save user details in the database)
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         user.setRole(ERole.NURSE);
-
         userService.saveUser(user);
         model.addAttribute("infoMessage", "Account created successfully");
+
         SimpleMailMessage mailMessage
                 = new SimpleMailMessage();
 
         mailMessage.setFrom(sender);
         mailMessage.setTo(user.getEmail());
-        mailMessage.setText("Thank you for signup, welcome to our system " + user.getUsername() + "😉 ");
-        mailMessage.setSubject("Thank you Signup *.*");
+        mailMessage.setText("Thank you for signup, welcome to our system " + user.getUsername() + "😉");
+        mailMessage.setSubject("Welcome *.*");
 
         javaMailSender.send(mailMessage);
         return "redirect:/login";
@@ -76,3 +77,5 @@ public class UsersController {
 
 
 }
+
+

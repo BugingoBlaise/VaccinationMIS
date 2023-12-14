@@ -97,20 +97,34 @@
       </nav>
     </div>
     <div class="form-container">
-      <form id="login-form" th:action="@{/auth}" th:object="${log}" method="post">
+      <form id="login-form" th:action="@{/login}" role="form" method="post">
+<!--        <div th:if="param.error" >-->
+<!--          Invalid usename and password-->
+<!--        </div>-->
+<!--        <div th:if="param.logout" >-->
+<!--          Logged out successfully-->
+<!--        </div>-->
+
         <h2>Login</h2>
         <label for="username">Username:</label>
-        <input type="text" id="username" th:field="*{username}" required />
+        <input type="text" id="username" name="username" required />
 
-        <label for="password">Password:</label>
-        <input type="password" id="password"  th:field="*{password}" required />
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
 
-        <button type="submit">Login</button>
+
+          <button type="submit" value="Log in">Login</button>
         <a href="#" class="signup">Signup</a>
       </form>
 
       <form  th:action="@{/login/createAccount}" method="post" th:object="${log}" id="signup-form"  style="display: none">
-      <h2>Signup</h2>
+        <div th:if="param.error" >
+          <span>Invalid usename and password</span>
+        </div>
+        <div th:if="param.logout" >
+          <span>Logged out successfully</span>
+        </div>
+        <h2>Signup</h2>
         <small style="background-color: #2980b9" th:text="${infoMessage}"></small>
         <label for="signup-username">Names:</label>
         <input type="text" id="signup-names" th:field="*{name}" required />
