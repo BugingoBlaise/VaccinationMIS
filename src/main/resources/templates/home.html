@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,18 +17,20 @@
       background-color: #34495e;
       color: white;
       text-align: center;
-      padding: 7px 0;
+      padding: 4px 0;
       position: fixed;
       top: 0;
       width: 100%;
     }
-
+.navigation .logo{
+  float: left;
+  margin-left: 30px;
+}
     nav {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       padding: 15px;
-      /*position: fixed;*/
     }
 
     .home a {
@@ -82,15 +84,12 @@
       margin-bottom: 20px;
     }
 
-    .image-container {
-      text-align: center;
-      margin-top: 20px;
-    }
+
 
     img {
       max-width: 100%;
-      height: auto;
-      border-radius: 8px;
+      height: 60px;
+      border-radius: 30px;
     }
 
     .info-section,
@@ -146,12 +145,15 @@
 <body>
 <div class="navigation">
   <nav>
+    <div class="logo">
+      <img src="../static/images/resized.png" alt="Vaccination Image" height="100px" width="80px" />
+    </div>
     <div class="home">
       <a href="#home">Home</a>
     </div>
-    <a th:href="@{/logout}">Logout</a>
-    <a href="#patients">Patients</a>
-    <a th:href="@{/vaccine}">Vaccines</a>
+    <a href="#patients">About Us</a>
+    <a href="#patients">Contact Us</a>
+    <a th:href="@{/login}">Login</a>
   </nav>
 </div>
 <div class="header">
@@ -180,11 +182,9 @@
       <p>Learn about the latest updates and guidelines regarding vaccinations.</p>
     </div>
 
-    <div class="image-container">
-      <img src="path/to/your/image.jpg" alt="Vaccination Image" />
-    </div>
-  </div>
 
+  </div>
+<section id="about"></section>
   <div class="about-section">
     <h2>About Us</h2>
     <p>We are committed to providing a seamless experience for managing vaccination records.</p>

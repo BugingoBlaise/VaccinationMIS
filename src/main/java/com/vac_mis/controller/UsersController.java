@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 //@RequestMapping("api/v1/admin")
- @Controller
+@Controller
 public class UsersController {
     @Autowired
     IUsersService userService;
@@ -28,8 +28,14 @@ public class UsersController {
     String sender;
 
 
+    @GetMapping("/home")
+    public String homePage() {
+        return "home";
+    }
+
+
     @GetMapping("/login")
-    public String homePage(Model model) {
+    public String loginPage(Model model) {
         model.addAttribute("log", new Users());
         return "login";
     }
