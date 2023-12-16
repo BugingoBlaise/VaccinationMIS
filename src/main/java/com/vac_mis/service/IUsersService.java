@@ -10,6 +10,10 @@ public interface IUsersService {
     void saveUser(Users user);
     void deleteUser(Users user);
     List<Users>usersList();
+
+    Users getUserByUsername(String username);
+
+    boolean authenticateUser(String username, String password);
 //    Users getLoggedInUser();
 
 //    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;

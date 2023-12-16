@@ -97,7 +97,7 @@
       </nav>
     </div>
     <div class="form-container">
-      <form id="login-form" th:action="@{/login}" role="form" method="post">
+      <form id="login-form" th:action="@{/login/login_user}" role="form" method="post">
 <!--        <div th:if="param.error" >-->
 <!--          Invalid usename and password-->
 <!--        </div>-->
@@ -112,8 +112,7 @@
           <label for="password">Password:</label>
           <input type="password" id="password" name="password" required />
 
-
-          <button type="submit" value="Log in">Login</button>
+          <button type="submit">Login</button>
         <a href="#" class="signup">Signup</a>
       </form>
 

@@ -24,6 +24,7 @@ public class Information {
     private String patientName;
     @Enumerated(EnumType.STRING)
     private EGender gender;
+    private String email;
     private LocalDate dob;
     @ManyToOne
     @JoinColumn(name = "vac_Id")

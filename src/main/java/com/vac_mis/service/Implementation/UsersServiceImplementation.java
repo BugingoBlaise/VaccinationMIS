@@ -8,9 +8,6 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,16 +35,21 @@ public class UsersServiceImplementation implements IUsersService {
     public List<Users> usersList() {
         return dao.findAll();
     }
-/*
+
     @Override
-    public Users getLoggedInUser() {
-        return (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public Users getUserByUsername(String username) {
+        return dao.getUserByUsername(username);
     }
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return (UserDetails) dao.findAccountByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public boolean authenticateUser(String username, String password) {
+        Users user = dao.getUserByUsername(username);
+
+        // Check if the user exists and the password matches
+        return user != null && user.getPassword().equals(password);
     }
-*/
+
+
 
 
 }

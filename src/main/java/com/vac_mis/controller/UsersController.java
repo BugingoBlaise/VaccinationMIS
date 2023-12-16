@@ -3,6 +3,8 @@ package com.vac_mis.controller;
 import com.vac_mis.model.Users;
 import com.vac_mis.model.enums.ERole;
 import com.vac_mis.service.IUsersService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 
 //@RequestMapping("api/v1/admin")
@@ -38,6 +42,11 @@ public class UsersController {
     public String loginPage(Model model) {
         model.addAttribute("log", new Users());
         return "login";
+    }
+    @GetMapping("/login/fail")
+    public String failPage(Model model) {
+        model.addAttribute("log", new Users());
+        return "loginFail";
     }
 
 
@@ -81,6 +90,32 @@ public class UsersController {
         }
     }*/
 
+    @PostMapping("/login/login_user")
+    public String loginUser(@ModelAttribute("log") Users users, HttpServletRequest request) {
+        Users existingUserName = userService.getUserByUsername(users.getUsername());
+       if(users.getUsername().equals("admin")&&users.getPassword().equals("admin")){
+           return "redirect:/admin";
+       }
+
+        if (existingUserName != null && existingUserName.getId() != null) {
+            String password = existingUserName.getPassword();
+            /*store role and redirect page*/
+            if (passwordEncoder.matches(users.getPassword(), existingUserName.getPassword())) {
+                String role = String.valueOf(existingUserName.getRole());
+                UUID userId = existingUserName.getId();
+
+                HttpSession session = request.getSession();
+                session.setAttribute("role", role);
+                session.setAttribute("userId", userId);
+                /*redirect to home page*/
+                return "redirect:/info";
+            } else {
+                return "redirect:/login/fail";
+            }
+        } else {
+            return "redirect:/login/fail";
+        }
+    }
 
 }
 

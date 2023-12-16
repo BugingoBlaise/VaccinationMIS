@@ -9,5 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface IUsersDao extends JpaRepository<Users, UUID> {
-    Optional<Users> findAccountByEmail(String email);
+//    Optional<Users> findAccountByEmail(String email);
+    @Query("SELECT u FROM Users u WHERE u.username = :username")
+    Users getUserByUsername(String username);
 }

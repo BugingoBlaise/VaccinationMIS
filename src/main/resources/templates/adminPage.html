@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Page</title>
+  <style>
+    body {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    .navv {
+      background-color: #2c3e50;
+      overflow: hidden;
+      box-shadow: 0px 10px 10px 0px #aaa;
+    }
+
+    .navv a {
+      float: right;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 16px 18px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      font-size: medium;
+      font-weight: bold;
+    }
+
+    .navv a:hover {
+      background-color: #34495e;
+    }
+
+    .navv .home {
+      float: left;
+      margin-left: 30px;
+    }
+
+    .admin-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      height: 100vh;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div class="navv">
+  <nav>
+    <div class="home">
+      <a th:href="@{/home}">Home</a>
+    </div>
+    <a th:href="@{/admin}">Admin</a>
+  </nav>
+</div>
+<div class="admin-container">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Username</th>
+      <!-- Add more columns as needed -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through the list of nurses and populate the table -->
+    <tr th:each="nurse : ${nurselist}">
+      <td th:text="${nurse.id}"></td>
+      <td th:text="${nurse.name}"></td>
+      <td th:text="${nurse.email}"></td>
+      <td th:text="${nurse.username}"></td>
+      <!-- Add more columns as needed -->
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
