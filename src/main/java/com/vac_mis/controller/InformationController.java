@@ -55,8 +55,10 @@ public class InformationController {
         } else {
 
 
-            infoService.saveInformation(information);
 
+
+
+            infoService.saveInformation(information);
 
             SimpleMailMessage mailMessage
                     = new SimpleMailMessage();

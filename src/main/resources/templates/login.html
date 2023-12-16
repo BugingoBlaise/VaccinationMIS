@@ -91,7 +91,7 @@
     <div class="navv">
       <nav>
         <div class="home">
-          <a th:href="@{/home}">Home</a>
+          <a th:href="@{/}">Home</a>
         </div>
         <a th:href="@{/login}">LOGIN/SIGNUP</a>
       </nav>
@@ -117,12 +117,12 @@
       </form>
 
       <form  th:action="@{/login/createAccount}" method="post" th:object="${log}" id="signup-form"  style="display: none">
-        <div th:if="param.error" >
-          <span>Invalid usename and password</span>
-        </div>
-        <div th:if="param.logout" >
-          <span>Logged out successfully</span>
-        </div>
+<!--        <div th:if="param.error" >-->
+<!--          <span>Invalid usename and password</span>-->
+<!--        </div>-->
+<!--        <div th:if="param.logout" >-->
+<!--          <span>Logged out successfully</span>-->
+<!--        </div>-->
         <h2>Signup</h2>
         <small style="background-color: #2980b9" th:text="${infoMessage}"></small>
         <label for="signup-username">Names:</label>

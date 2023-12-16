@@ -41,11 +41,17 @@
                 <option th:each="vaccine : ${vacList}" th:value="${vaccine.id}" th:text="${vaccine.name}">[[${vaccine.name}]]</option>
             </select>
 
+
+
+
             <label for="nurse">Select Nurse:</label>
-            <select name="nurse" id="nurse"  th:field="*{nurse.name}">
+            <select name="nurse" id="nurse"  th:field="*{nurse.id}">
                 <option value="">select nurse</option>
                 <option th:each="nurse : ${nurseList}" th:value="${nurse.id}" th:text="${nurse.name}">[[${nurse.name}]]</option>
             </select>
+
+
+
         </div>
       <input type="submit" id="formBtn" value="Submit"/>
     </form>

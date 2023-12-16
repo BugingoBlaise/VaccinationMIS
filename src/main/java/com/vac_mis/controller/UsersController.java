@@ -49,12 +49,14 @@ public class UsersController {
     }
 
 
-    @PostMapping("/register")
+    @PostMapping("/login/createAccount")
     public String signup(@ModelAttribute("log") Users user, Model model) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(ERole.NURSE);
+
         userService.saveUser(user);
+
         model.addAttribute("infoMessage", "Account created successfully");
 
         SimpleMailMessage mailMessage
