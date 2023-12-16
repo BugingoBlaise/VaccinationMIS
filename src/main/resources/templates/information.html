@@ -23,12 +23,12 @@
 
             <label for="patientName">Patient Name:</label>
             <input type="text" id="patientName" th:field="*{patientName}" required/>
-            <label for="email">Patient Name:</label>
+            <label for="email">Patient Email:</label>
             <input type="email" id="email" th:field="*{email}" required/>
 
             <label for="eGender">Gender:</label>
             <select name="eGender" id="eGender" th:field="*{gender}">
-                <option value="">select gender</option>
+                <option th:value="*{gender}">select gender</option>
                 <option th:value="${T(com.vac_mis.model.enums.EGender).MALE}">MALE</option>
                 <option th:value="${T(com.vac_mis.model.enums.EGender).FEMALE}">FEMALE</option>
             </select>
@@ -42,7 +42,7 @@
             </select>
 
             <label for="nurse">Select Nurse:</label>
-            <select name="nurse" id="nurse" th:field="*{nurse.id}">
+            <select name="nurse" id="nurse"  th:field="*{nurse.name}">
                 <option value="">select nurse</option>
                 <option th:each="nurse : ${nurseList}" th:value="${nurse.id}" th:text="${nurse.name}">[[${nurse.name}]]</option>
             </select>
@@ -57,8 +57,9 @@
             <table>
                 <tr>
                     <th style="display: none;"></th>
-                    <th>ID</th>
+                    <th style="display: none;"></th>
                     <th>NAMES</th>
+                    <th>EMAIL</th>
                     <th>GENDER</th>
                     <th>DOB</th>
                     <th>VACCINE</th>
@@ -68,8 +69,9 @@
                 <tbody>
                 <tr th:each="in: ${informationList}">
                     <td th:text="${in.id}" style="display: none;"></td>
-                    <td th:text="${in.idNumber}"></td>
+                    <td th:text="${in.idNumber}" style="display: none;" ></td>
                     <td th:text="${in.patientName}"></td>
+                    <td th:text="${in.email}"></td>
                     <td th:text="${in.gender}"></td>
                     <td th:text="${in.dob}"></td>
                     <td th:text="${in.vaccine.getName()}"></td>
@@ -100,6 +102,7 @@
     const infoId=document.getElementById("infoId");
     const IdNumber = document.getElementById("IdNumber");
     const patientName = document.getElementById("patientName");
+    const email=document.getElementById("email");
     const eGender = document.getElementById("eGender");
     const dob = document.getElementById("dob");
     const vaccine = document.getElementById("vaccine");
@@ -118,10 +121,11 @@
             infoId.value=fields[0].textContent;
             IdNumber.value = fields[1].textContent;
             patientName.value = fields[2].textContent;
-            eGender.value = fields[3].textContent;
-            dob.value = fields[4].textContent;
-            vaccine.value = fields[5].textContent;
-            nurse.value = fields[6].textContent;
+            email.value=fields[3].textContent;
+            eGender.value = fields[4].textContent;
+            dob.value = fields[5].textContent;
+            vaccine.value = fields[6].textContent;
+            nurse.value = fields[7].textContent;
 
             formBtn.value = "Update";
             formBtn.style.backgroundColor = "skyBlue";
@@ -138,10 +142,11 @@
             infoId.value=fields[0].textContent;
             IdNumber.value = fields[1].textContent;
             patientName.value = fields[2].textContent;
-            eGender.value = fields[3].textContent;
-            dob.value = fields[4].textContent;
-            vaccine.value = fields[5].textContent;
-            nurse.value = fields[6].textContent;
+            email.value=fields[3].textContent;
+            eGender.value = fields[4].textContent;
+            dob.value = fields[5].textContent;
+            vaccine.value = fields[6].textContent;
+            nurse.value = fields[7].textContent;
 
             formBtn.value = "Delete";
             formBtn.style.backgroundColor = "Red";

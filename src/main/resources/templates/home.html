@@ -68,7 +68,8 @@
     }
     .main-container {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      gap: 60px;
       align-items: center;
       justify-content: center;
       min-height: 80vh;
@@ -84,12 +85,17 @@
       margin-bottom: 20px;
     }
 
-
+    .logo {
+      display: flex;
+      align-items: flex-start;
+      margin-left: 200px; /* Adjust the margin as needed */
+    }
 
     img {
       max-width: 100%;
       height: 60px;
       border-radius: 30px;
+      margin-right: 10px; /* Adjust the margin as needed */
     }
 
     .info-section,
@@ -145,13 +151,13 @@
 <body>
 <div class="navigation">
   <nav>
-    <div class="logo">
-      <img src="../static/images/resized.png" alt="Vaccination Image" height="100px" width="80px" />
-    </div>
+<!--    <div class="logo">-->
+<!--      <img src="../static/images/resized.png" alt="Vaccination Image" height="100px" width="80px" />-->
+<!--    </div>-->
     <div class="home">
       <a href="#home">Home</a>
     </div>
-    <a href="#patients">About Us</a>
+    <a href="#about">About Us</a>
     <a href="#patients">Contact Us</a>
     <a th:href="@{/login}">Login</a>
   </nav>
@@ -168,8 +174,8 @@
   </div>
 
   <div class="action-buttons">
-    <a href="#patients" class="action-btn">View Patients</a>
-    <a th:href="@{/vaccine}" class="action-btn">Explore Vaccines</a>
+    <a href="https://www.who.int/news-room/feature-stories/detail/how-do-vaccines-work?adgroupsurvey={adgroupsurvey}" class="action-btn">How Vaccines work</a>
+    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwiYjr_zzZODAxVzOwYAHRRkBr8YABABGgJ3cw&ase=2&gclid=Cj0KCQiAsvWrBhC0ARIsAO4E6f8pHgFnt64tGCoALHi1RSru7Q6dEXNNUrSidA2o9uz6izxK9L4DZtEaAnz-EALw_wcB&ohost=www.google.com&cid=CAESVuD2RR9l9x5QVlVmD6WZDbgSyL_N9M6LddtngcOAnkKTpXbqhWkzFxB3xPg6vaW1NMkTXp9zeG6xTF3ahsDXij6JcYzimaWacednLUUTHnqmj8977ym9&sig=AOD64_0UzEmK4UEgLCjC6udivs77WW5kFA&q&nis=4&adurl&ved=2ahUKEwiO3rjzzZODAxWbU6QEHb8FCpsQqyQoAHoECAkQCw" class="action-btn">Explore Vaccines</a>
   </div>
   <div class="main-container">
     <div class="box">
@@ -179,17 +185,18 @@
 
     <div class="box">
       <h2>Important Information</h2>
-      <p>Learn about the latest updates and guidelines regarding vaccinations.</p>
+      <p>Learn about the latest updates and guidelines regarding vaccinations. This platform offers Nurses the priviledge to manage vaccines and patients info</p>
     </div>
 
 
   </div>
-<section id="about"></section>
+<section id="about">
   <div class="about-section">
     <h2>About Us</h2>
     <p>We are committed to providing a seamless experience for managing vaccination records.</p>
     <p>Our mission is to contribute to public health by ensuring easy access to vaccination information.</p>
   </div>
+</section>
 </div>
 <footer>
   &copy; 2023 Vaccination System. All rights reserved.

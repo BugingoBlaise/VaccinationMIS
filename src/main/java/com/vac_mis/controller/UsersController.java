@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 
-//@RequestMapping("api/v1/admin")
 @Controller
 public class UsersController {
     @Autowired
@@ -32,7 +31,7 @@ public class UsersController {
     String sender;
 
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String homePage() {
         return "home";
     }
@@ -69,26 +68,7 @@ public class UsersController {
         javaMailSender.send(mailMessage);
         return "redirect:/login";
     }
-/*
-    @PostMapping("/userLogin")
-    public String userLogin(@ModelAttribute Users account, RedirectAttributes redirectAttributes, HttpSession session) {
-        try {
-            Authentication authentication = authenticationProvider.authenticate(
-                    new UsernamePasswordAuthenticationToken(account.getUsername(), account.getPassword())
-            );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println("Authenticated: " + authentication);
 
-            System.out.println("Session ID: " + session.getId());
-            System.out.println("Creation Time: " + session.getCreationTime());
-            System.out.println("Last Accessed Time: " + session.getLastAccessedTime());
-
-            return "redirect:/admin";
-        } catch (BadCredentialsException ex) {
-            redirectAttributes.addFlashAttribute("error", "Invalid username or password");
-            return "redirect:login";
-        }
-    }*/
 
     @PostMapping("/login/login_user")
     public String loginUser(@ModelAttribute("log") Users users, HttpServletRequest request) {

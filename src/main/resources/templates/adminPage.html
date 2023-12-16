@@ -61,7 +61,7 @@
     }
 
     th {
-      background-color: #3498db;
+      background-color: #0d446b;
       color: white;
     }
   </style>
@@ -72,7 +72,8 @@
     <div class="home">
       <a th:href="@{/home}">Home</a>
     </div>
-    <a th:href="@{/admin}">Admin</a>
+    <a th:href="@{/login}">Logout</a>
+
   </nav>
 </div>
 <div class="admin-container">
@@ -88,7 +89,7 @@
     </thead>
     <tbody>
     <!-- Loop through the list of nurses and populate the table -->
-    <tr th:each="nurse : ${nurselist}">
+    <tr th:each="nurse : ${nurseList}">
       <td th:text="${nurse.id}"></td>
       <td th:text="${nurse.name}"></td>
       <td th:text="${nurse.email}"></td>
