@@ -76,6 +76,10 @@
 
   </nav>
 </div>
+<div style="align-content: center; color: #2980b9; ">
+<h1 style="font-weight: bold">WELCOME TO ADMIN PAGE </h1>
+<h2>Here is the List of all system Users</h2>
+</div>
 <div class="admin-container">
   <table>
     <thead>
@@ -84,6 +88,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Username</th>
+      <th>Action</th>
       <!-- Add more columns as needed -->
     </tr>
     </thead>
@@ -94,6 +99,11 @@
       <td th:text="${nurse.name}"></td>
       <td th:text="${nurse.email}"></td>
       <td th:text="${nurse.username}"></td>
+      <td>
+        <div class="cell" data-title="Action">
+          <a class="delete-btn" style="color: red">Delete</a>
+        </div>
+      </td>
       <!-- Add more columns as needed -->
     </tr>
     </tbody>
