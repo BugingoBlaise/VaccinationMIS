@@ -1,186 +1,189 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login / Signup</title>
     <style>
-      body {
-        display: flex;
-        padding: 0;
-        margin: 0;
-        flex-direction: column;
-      }
+        body {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('your-background-image.jpg') center center fixed;
+            background-size: cover;
+        }
 
-      .navv {
-        background-color: #2c3e50;
-        overflow: hidden;
-        box-shadow: 0px 10px 10px 0px #aaa;
-      }
+        .navv {
+            background-color: rgba(44, 62, 80, 0.9);
+            overflow: hidden;
+            box-shadow: 0px 10px 10px 0px #aaa;
+            color: white;
+        }
 
-      .navv a {
-        float: right;
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 16px 18px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-        font-size: medium;
-        font-weight: bold;
-      }
+        .navv a {
+            float: right;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px 18px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-size: medium;
+            font-weight: bold;
+        }
 
-      .navv a:hover {
-        background-color: #34495e;
-      }
+        .navv a:hover {
+            background-color: #34495e;
+        }
 
-      .navv .home {
-        float: left;
-        margin-left: 30px;
-      }
+        .navv .home {
+            float: left;
+            margin-left: 30px;
+        }
 
-      .form-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-      }
+        form {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            max-width: 100%;
+        }
 
-      form {
-        background-color: #ffffff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        border-radius: 8px;
-        width: 300px;
-        max-width: 100%;
-      }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
 
-      label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-      }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            outline: 0;
+        }
 
-      input {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        outline: 0;
-      }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-      button {
-        background-color: #3498db;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
+        button:hover {
+            background-color: #2980b9;
+        }
 
-      button:hover {
-        background-color: #2980b9;
-      }
+        .signup-link,
+        .login-link {
+            color: #2980b9;
+            text-decoration: none;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+
+        .signup-link:hover,
+        .login-link:hover {
+            text-decoration: underline;
+        }
     </style>
-  </head>
-  <body>
-    <div class="navv">
-      <nav>
+</head>
+<body>
+<div class="navv">
+    <nav>
         <div class="home">
-          <a th:href="@{/}">Home</a>
+            <a th:href="@{/}">Home</a>
         </div>
         <a th:href="@{/login}">LOGIN/SIGNUP</a>
-      </nav>
-    </div>
-    <div class="form-container">
-      <form id="login-form" th:action="@{/login/login_user}" role="form" method="post">
-<!--        <div th:if="param.error" >-->
-<!--          Invalid usename and password-->
-<!--        </div>-->
-<!--        <div th:if="param.logout" >-->
-<!--          Logged out successfully-->
-<!--        </div>-->
+    </nav>
+</div>
+<div class="form-container">
+    <form id="login-form" th:action="@{/login/login_user}" role="form" method="post">
+        <div class="form-box">
+            <h2 style="text-align: center">Login</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+            <button type="submit">Login</button>
+            <a href="#" class="signup-link">Signup</a>
+        </div>
+    </form>
 
-        <h2>Login</h2>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
-
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
-
-          <button type="submit">Login</button>
-        <a href="#" class="signup">Signup</a>
-      </form>
-
-      <form  th:action="@{/login/createAccount}" method="post" th:object="${log}" id="signup-form"  style="display: none">
-<!--        <div th:if="param.error" >-->
-<!--          <span>Invalid usename and password</span>-->
-<!--        </div>-->
-<!--        <div th:if="param.logout" >-->
-<!--          <span>Logged out successfully</span>-->
-<!--        </div>-->
-        <h2>Signup</h2>
-        <small style="background-color: #2980b9" th:text="${infoMessage}"></small>
-        <label for="signup-username">Names:</label>
-        <input type="text" id="signup-names" th:field="*{name}" required />
-        <label for="signup-email">Email:</label>
-        <input type="email" id="signup-email" th:field="*{email}" required />
-        <label for="signup-username">Username:</label>
-        <input type="text"  id="signup-username" th:field="*{username}" required />
-        <label for="signup-password">Password:</label>
-        <input type="password" id="signup-password" th:field="*{password}" required/>
-
-        <input type="submit" value="Submit" style="background-color: #2980b9"/>
-        <a href="@{/login}" class="login">Login</a>
-      </form>
-    </div>
-
-
-  </body>
+    <form th:action="@{/login/createAccount}" method="post" th:object="${log}" id="signup-form" style="display: none">
+        <div class="form-box">
+            <h2>Signup</h2>
+            <small style="background-color: #2980b9" th:text="${infoMessage}"></small>
+            <label for="signup-names">Names:</label>
+            <input type="text" id="signup-names" th:field="*{name}" required />
+            <label for="signup-email">Email:</label>
+            <input type="email" id="signup-email" th:field="*{email}" required />
+            <label for="signup-username">Username:</label>
+            <input type="text" id="signup-username" th:field="*{username}" required />
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" th:field="*{password}" required />
+            <input type="submit" value="Submit" style="background-color: #2980b9" />
+            <a href="@{/login}" class="login-link">Login</a>
+        </div>
+    </form>
+</div>
+</body>
 </html>
 <script defer>
-  function validateLoginForm() {
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    function validateLoginForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
 
-    if (!username || !password) {
-      alert("Please fill in all fields for login.");
-      return false;
+        if (!username || !password) {
+            alert("Please fill in all fields for login.");
+            return false;
+        }
+
+        // Additional validation logic if needed
+
+        return true;
     }
 
-    // Additional validation logic if needed
+    function validateSignupForm() {
+        var signupUsername = document.getElementById("signup-username").value;
+        var signupPassword = document.getElementById("signup-password").value;
 
-    return true;
-  }
+        if (!signupUsername || !signupPassword) {
+            alert("Please fill in all fields for signup.");
+            return false;
+        }
 
-  function validateSignupForm() {
-    var signupUsername = document.getElementById("signup-username").value;
-    var signupPassword = document.getElementById("signup-password").value;
+        // Additional validation logic if needed
 
-
-    if (!signupUsername || !signupPassword) {
-      alert("Please fill in all fields for signup.");
-      return false;
+        return true;
     }
 
+    // JavaScript to toggle between login and signup forms
+    document.querySelector(".signup-link").addEventListener("click", function () {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("signup-form").style.display = "block";
+    });
 
-    // Additional validation logic if needed
-
-    return true;
-  }
-
-  // JavaScript to toggle between login and signup forms
-  document.querySelector(".signup").addEventListener("click", function () {
-    document.getElementById("login-form").style.display = "none";
-    document.getElementById("signup-form").style.display = "block";
-  });
-
-  document.querySelector(".login").addEventListener("click", function () {
-    document.getElementById("signup-form").style.display = "none";
-    document.getElementById("login-form").style.display = "block";
-  });
+    document.querySelector(".login-link").addEventListener("click", function () {
+        document.getElementById("signup-form").style.display = "none";
+        document.getElementById("login-form").style.display = "block";
+    });
 </script>

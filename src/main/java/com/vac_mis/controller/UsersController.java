@@ -54,9 +54,7 @@ public class UsersController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(ERole.NURSE);
-
         userService.saveUser(user);
-
         model.addAttribute("infoMessage", "Account created successfully");
 
         SimpleMailMessage mailMessage
